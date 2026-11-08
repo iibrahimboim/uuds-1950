@@ -72,13 +72,13 @@ export default function PeriodeKonstitusi() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#8c6239]">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8c6239]">
             Linimasa Konstitusi
           </p>
           <h2 className="mt-2 text-3xl font-extrabold text-[#2a221b] sm:text-4xl md:text-5xl">
             Pembagian Periode Konstitusi
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[#5a4a3a]">
+          <p className="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-[#4a3b2c] sm:text-lg">
             Empat fase perkembangan konstitusi Indonesia sejak kemerdekaan, dengan
             UUDS 1950 sebagai tonggak era demokrasi parlementer.
           </p>
@@ -113,17 +113,17 @@ export default function PeriodeKonstitusi() {
                 </span>
                 <div className="flex-1 pr-12">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold text-[#8c6239]">
+                    <span className="text-sm font-bold text-[#8c6239]">
                       Periode {item.no}
                     </span>
                   </div>
                   <h3 className="text-lg font-bold text-[#2a221b]">
                     {item.title}
                   </h3>
-                  <p className="mt-1 text-xs font-semibold text-[#8c6239]">
+                  <p className="mt-1 text-sm font-semibold text-[#8c6239]">
                     {item.period}
                   </p>
-                  <p className="mt-2.5 text-sm leading-relaxed text-[#4a3b2c]">
+                  <p className="mt-2.5 text-base leading-relaxed text-[#3a2f24]">
                     {item.desc}
                   </p>
                 </div>
@@ -141,13 +141,13 @@ export default function PeriodeKonstitusi() {
           className="mt-14 rounded-2xl border-2 border-[#8c6239]/30 bg-[#f5e6d0]/90 p-6 sm:p-8 shadow-lg backdrop-blur-sm"
         >
           <div className="text-center">
-            <span className="inline-block rounded-full bg-[#8c6239]/20 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#8c6239]">
+            <span className="inline-block rounded-full bg-[#8c6239]/20 px-3 py-1 text-sm font-bold uppercase tracking-wider text-[#8c6239]">
               Parameter Evaluasi
             </span>
             <h3 className="mt-2 text-2xl font-bold text-[#2a221b]">
               Komponen yang Dianalisis dalam Periode
             </h3>
-            <p className="mt-1 text-sm text-[#5a4a3a]">
+            <p className="mt-1 text-base text-[#4a3b2c]">
               Lima tolok ukur pelaksanaan demokrasi era UUDS 1950:
             </p>
           </div>
@@ -166,10 +166,10 @@ export default function PeriodeKonstitusi() {
                   ✓
                 </span>
                 <div>
-                  <h4 className="text-sm font-bold text-[#2a221b]">
+                  <h4 className="text-base font-bold text-[#2a221b]">
                     {item.label}
                   </h4>
-                  <p className="mt-1 text-xs leading-relaxed text-[#5a4a3a]">
+                  <p className="mt-1 text-sm leading-relaxed text-[#4a3b2c]">
                     {item.desc}
                   </p>
                 </div>

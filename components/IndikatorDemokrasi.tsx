@@ -74,13 +74,13 @@ export default function IndikatorDemokrasi() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#8c6239]">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8c6239]">
             Arsip Analisis
           </p>
           <h2 className="mt-2 text-3xl font-extrabold text-[#2a221b] sm:text-4xl md:text-5xl">
             5 Indikator Demokrasi Era UUDS 1950
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[#5a4a3a]">
+          <p className="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-[#4a3b2c] sm:text-lg">
             Klik pada setiap kartu dokumen untuk membuka dokumen arsip lengkap
             mengenai indikator pelaksanaan demokrasi parlementer.
           </p>
@@ -112,23 +112,23 @@ export default function IndikatorDemokrasi() {
                       <h3 className="text-lg font-bold text-[#2a221b]">
                         {item.title}
                       </h3>
-                      <p className="text-xs font-medium text-[#8c6239]">
+                      <p className="text-sm font-medium text-[#8c6239]">
                         {item.subtitle}
                       </p>
                     </div>
                   </div>
-                  <span className="text-xs text-[#8c6239]/50 transition-colors duration-200 group-hover:text-[#8c6239]">
+                  <span className="text-sm text-[#8c6239]/70 transition-colors duration-200 group-hover:text-[#8c6239]">
                     Buka ↗
                   </span>
                 </div>
 
                 {/* Content preview */}
-                <p className="mt-4 text-sm leading-relaxed text-[#4a3b2c] line-clamp-3">
+                <p className="mt-4 text-base leading-relaxed text-[#3a2f24] line-clamp-3">
                   {item.content}
                 </p>
 
                 {/* Highlight tag */}
-                <div className="mt-4 rounded-lg bg-[#8c6239]/10 px-3 py-1.5 text-xs text-[#8c6239] font-medium">
+                <div className="mt-4 rounded-lg bg-[#8c6239]/10 px-3 py-2 text-sm text-[#6b4828] font-medium">
                   📌 {item.highlight}
                 </div>
               </div>
@@ -174,7 +174,7 @@ export default function IndikatorDemokrasi() {
                   <h3 className="text-2xl font-bold text-[#2a221b]">
                     {selectedItem.title}
                   </h3>
-                  <p className="text-xs font-semibold text-[#8c6239]">
+                  <p className="text-sm font-semibold text-[#8c6239]">
                     {selectedItem.subtitle}
                   </p>
                 </div>
@@ -182,13 +182,13 @@ export default function IndikatorDemokrasi() {
 
               <div className="my-4 h-px w-full bg-[#8c6239]/20" />
 
-              <div className="space-y-4 text-sm leading-relaxed text-[#3a2f24]">
+              <div className="space-y-4 text-base leading-relaxed text-[#3a2f24] sm:text-lg">
                 <p>{selectedItem.content}</p>
                 <div className="rounded-xl border border-[#8c6239]/30 bg-[#8c6239]/10 p-4">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#8c6239]">
+                  <h4 className="text-sm font-bold uppercase tracking-wider text-[#8c6239]">
                     Kesimpulan Utama:
                   </h4>
-                  <p className="mt-1 text-sm font-medium text-[#2a221b]">
+                  <p className="mt-1 text-base font-medium text-[#2a221b]">
                     {selectedItem.highlight}
                   </p>
                 </div>

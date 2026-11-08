@@ -37,13 +37,13 @@ export default function Kesimpulan() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#8c6239]">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8c6239]">
             Rangkuman & Refleksi
           </p>
           <h2 className="mt-2 text-3xl font-extrabold text-[#2a221b] sm:text-4xl md:text-5xl">
             Kesimpulan & Refleksi Sejarah
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[#5a4a3a]">
+          <p className="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-[#4a3b2c] sm:text-lg">
             Menyimpulkan dinamika perjalanan demokrasi parlementer di bawah naungan
             Undang-Undang Dasar Sementara 1950.
           </p>
@@ -68,7 +68,7 @@ export default function Kesimpulan() {
                   {item.title}
                 </h3>
               </div>
-              <p className="mt-3 text-sm leading-relaxed text-[#4a3b2c]">
+              <p className="mt-3 text-base leading-relaxed text-[#3a2f24] sm:text-lg">
                 {item.desc}
               </p>
             </motion.div>
@@ -84,13 +84,13 @@ export default function Kesimpulan() {
           className="mt-12 rounded-2xl border-2 border-[#8c6239]/30 bg-[#8c6239]/10 p-8 text-center shadow-lg"
         >
           <span className="text-4xl">🕊️</span>
-          <p className="mx-auto mt-4 max-w-2xl text-base italic leading-relaxed text-[#2a221b]">
+          <p className="mx-auto mt-4 max-w-2xl text-lg italic leading-relaxed text-[#2a221b] sm:text-xl">
             &ldquo;Demokrasi adalah proses pembelajaran tanpa akhir. Era UUDS 1950
             menunjukkan komitmen luhur para pendiri bangsa dalam menegakkan hak
             rakyat dan martabat demokrasi di bumi nusantara.&rdquo;
           </p>
           <div className="mx-auto mt-5 h-px w-24 bg-[#8c6239]/40" />
-          <p className="mt-3 text-xs font-bold uppercase tracking-wider text-[#8c6239]">
+          <p className="mt-3 text-sm font-bold uppercase tracking-wider text-[#8c6239]">
             Masa Demokrasi Parlementer Indonesia (17 Agustus 1950 — 5 Juli 1959)
           </p>
         </motion.div>

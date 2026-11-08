@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { label: "Beranda", href: "#beranda" },
+  { label: "Pengertian UUDS", href: "#pengertian" },
   { label: "Latar Belakang", href: "#latar-belakang" },
   { label: "Periode Konstitusi", href: "#periode" },
   { label: "Indikator", href: "#indikator" },
@@ -47,7 +48,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               data-clickable
-              className="text-sm font-medium text-[#4a3b2c] transition-colors duration-200 hover:text-[#8c6239]"
+              className="text-base font-medium text-[#4a3b2c] transition-colors duration-200 hover:text-[#8c6239]"
             >
               {link.label}
             </a>
@@ -95,7 +96,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="py-1.5 text-sm font-medium text-[#4a3b2c] transition-colors hover:text-[#8c6239]"
+                  className="py-1.5 text-base font-medium text-[#4a3b2c] transition-colors hover:text-[#8c6239]"
                 >
                   {link.label}
                 </a>

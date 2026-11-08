@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="id" className={ebGaramond.variable}>
       <body
-        className="min-h-screen font-serif text-[#2a221b] antialiased bg-cover bg-fixed bg-center bg-no-repeat selection:bg-[#8c6239]/30"
+        className="min-h-screen font-sans text-[#2a221b] antialiased bg-cover bg-fixed bg-center bg-no-repeat selection:bg-[#8c6239]/30"
         style={{ backgroundImage: "url('/assets/kertas_usang.jpg')" }}
       >
         {/* Film-grain noise overlay */}

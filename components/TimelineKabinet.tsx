@@ -100,13 +100,13 @@ export default function TimelineKabinet() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#8c6239]">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8c6239]">
             Rotasi Kekuasaan
           </p>
           <h2 className="mt-2 text-3xl font-extrabold text-[#2a221b] sm:text-4xl md:text-5xl">
             7 Kabinet dalam 9 Tahun
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[#5a4a3a]">
+          <p className="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-[#4a3b2c] sm:text-lg">
             Dinamika rotasi pemerintahan era UUDS 1950. Geser kartu atau gunakan
             tombol navigasi untuk menelusuri tiap kabinet.
           </p>
@@ -128,14 +128,14 @@ export default function TimelineKabinet() {
             className="h-auto w-full object-cover sepia-[0.25]"
             priority
           />
-          <div className="bg-[#f5e6d0]/90 px-4 py-2 text-center text-xs italic text-[#5a4a3a] border-t border-[#8c6239]/15">
+          <div className="bg-[#f5e6d0]/90 px-4 py-2 text-center text-sm italic text-[#4a3b2c] border-t border-[#8c6239]/15">
             Suasana sidang kabinet pemerintahan masa demokrasi parlementer (1950–1959)
           </div>
         </motion.div>
 
         {/* Scroll Controls */}
         <div className="mt-8 flex items-center justify-between px-2">
-          <span className="text-xs font-semibold uppercase tracking-wider text-[#8c6239]">
+          <span className="text-sm font-semibold uppercase tracking-wider text-[#8c6239]">
             Linimasa Kabinet (1950 – 1959)
           </span>
           <div className="flex gap-2">
@@ -177,7 +177,7 @@ export default function TimelineKabinet() {
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#8c6239] text-xs font-bold text-white">
                   {kab.no}
                 </span>
-                <span className="rounded-md bg-[#8c6239]/15 px-2.5 py-0.5 text-[11px] font-semibold text-[#8c6239]">
+                <span className="rounded-md bg-[#8c6239]/15 px-2.5 py-0.5 text-sm font-semibold text-[#8c6239]">
                   {kab.period}
                 </span>
               </div>
@@ -185,17 +185,17 @@ export default function TimelineKabinet() {
               <h3 className="mt-3 text-lg font-bold text-[#2a221b]">
                 {kab.name}
               </h3>
-              <p className="text-xs font-semibold text-[#8c6239]">
+              <p className="text-sm font-semibold text-[#8c6239]">
                 PM: {kab.perdanaMenteri}
               </p>
 
               <div className="my-3 h-px w-full bg-[#8c6239]/15" />
 
-              <p className="text-xs leading-relaxed text-[#4a3b2c]">
+              <p className="text-base leading-relaxed text-[#3a2f24]">
                 {kab.desc}
               </p>
 
-              <div className="mt-3 rounded-lg bg-amber-900/10 p-2.5 text-[11px] text-[#5a3a24]">
+              <div className="mt-3 rounded-lg bg-amber-900/10 p-3 text-sm leading-relaxed text-[#4a2d18]">
                 <span className="font-bold">Faktor Kejatuhan: </span>
                 {kab.jatuh}
               </div>

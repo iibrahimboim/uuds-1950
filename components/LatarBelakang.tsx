@@ -37,13 +37,13 @@ export default function LatarBelakang() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#8c6239]">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8c6239]">
             Konteks Sejarah
           </p>
           <h2 className="mt-2 text-3xl font-extrabold text-[#2a221b] sm:text-4xl md:text-5xl">
             Latar Belakang UUDS 1950
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[#5a4a3a]">
+          <p className="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-[#4a3b2c] sm:text-lg">
             Perjalanan peralihan dari negara serikat hasil KMB kembali menuju
             Negara Kesatuan Republik Indonesia dengan landasan demokrasi parlementer.
           </p>
@@ -68,7 +68,7 @@ export default function LatarBelakang() {
                   {item.title}
                 </h3>
               </div>
-              <p className="mt-3 text-sm leading-relaxed text-[#4a3b2c]">
+              <p className="mt-3 text-base leading-relaxed text-[#3a2f24] sm:text-lg">
                 {item.desc}
               </p>
             </motion.div>
@@ -83,13 +83,13 @@ export default function LatarBelakang() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mx-auto mt-12 max-w-3xl rounded-xl border-l-4 border-[#8c6239] bg-[#8c6239]/10 p-6 shadow-sm"
         >
-          <p className="text-base italic leading-relaxed text-[#2a221b]">
+          <p className="text-lg italic leading-relaxed text-[#2a221b] sm:text-xl">
             &ldquo;Meskipun sering menghadapi jatuh-bangunnya kabinet, era UUDS 1950
             mencerminkan masa di mana hak asasi manusia, kebebasan pers, dan
             kedaulatan rakyat melalui pemilu ditegakkan paling nyata dalam
             sejarah bangsa Indonesia.&rdquo;
           </p>
-          <p className="mt-2 text-right text-xs font-semibold uppercase tracking-wider text-[#8c6239]">
+          <p className="mt-2 text-right text-sm font-semibold uppercase tracking-wider text-[#8c6239]">
             — Catatan Kajian Hukum Tata Negara
           </p>
         </motion.div>

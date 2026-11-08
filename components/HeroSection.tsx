@@ -146,7 +146,7 @@ export default function HeroSection() {
 
         {/* Typewriter subtitle */}
         <div className="mt-6 min-h-[3.5rem] max-w-2xl">
-          <p className="text-lg leading-relaxed text-[#5a4a3a] sm:text-xl font-medium">
+          <p           className="text-xl leading-relaxed text-[#5a4a3a] sm:text-2xl font-medium">
             {displayed}
             {!done && (
               <span className="ml-1 inline-block h-5 w-[2px] bg-[#8c6239] animate-pulse align-middle" />
@@ -167,7 +167,7 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-6 max-w-xl text-sm leading-relaxed text-[#5a4a3a]/80"
+          className="mt-6 max-w-xl text-lg leading-relaxed text-[#4a3b2c] sm:text-xl"
         >
           Era kebebasan politik terluas dalam sejarah konstitusi Indonesia.
           Menjalankan sistem pemerintahan parlementer dengan multipartai, pemilu
@@ -205,10 +205,10 @@ export default function HeroSection() {
         transition={{ duration: 0.9, delay: 0.5, ease: "easeOut" }}
         className="absolute left-6 top-1/3 hidden w-60 -rotate-3 rounded-lg border border-[#8c6239]/25 bg-[#f5e6d0]/90 p-4 shadow-lg backdrop-blur-sm lg:block"
       >
-        <p className="text-[11px] font-semibold uppercase tracking-wider text-[#8c6239]">
+        <p className="text-sm font-semibold uppercase tracking-wider text-[#8c6239]">
           Koran Merdeka — 17 Agustus 1950
         </p>
-        <p className="mt-1.5 text-xs leading-relaxed text-[#3a2f24]">
+        <p className="mt-1.5 text-sm leading-relaxed text-[#3a2f24]">
           &ldquo;Negara Kesatuan Republik Indonesia resmi kembali berdiri dengan
           UUDS 1950 sebagai dasar konstitusional.&rdquo;
         </p>
@@ -220,10 +220,10 @@ export default function HeroSection() {
         transition={{ duration: 0.9, delay: 0.7, ease: "easeOut" }}
         className="absolute right-6 top-1/2 hidden w-60 rotate-2 rounded-lg border border-[#8c6239]/25 bg-[#f5e6d0]/90 p-4 shadow-lg backdrop-blur-sm lg:block"
       >
-        <p className="text-[11px] font-semibold uppercase tracking-wider text-[#8c6239]">
+        <p className="text-sm font-semibold uppercase tracking-wider text-[#8c6239]">
           Arsip Nasional — 1955
         </p>
-        <p className="mt-1.5 text-xs leading-relaxed text-[#3a2f24]">
+        <p className="mt-1.5 text-sm leading-relaxed text-[#3a2f24]">
           &ldquo;Pemilu pertama 1955 berlangsung damai dan jujur, menjadi tonggak
           sejarah demokrasi paling bersih di Indonesia.&rdquo;
         </p>

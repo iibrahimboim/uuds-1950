@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import PengertianUUDS from "@/components/PengertianUUDS";
 import LatarBelakang from "@/components/LatarBelakang";
 import PeriodeKonstitusi from "@/components/PeriodeKonstitusi";
 import IndikatorDemokrasi from "@/components/IndikatorDemokrasi";
@@ -15,6 +16,7 @@ export default function Home() {
         <HeroSection />
       </div>
 
+      <PengertianUUDS />
       <LatarBelakang />
       <PeriodeKonstitusi />
       <IndikatorDemokrasi />
@@ -23,11 +25,11 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-[#8c6239]/10 px-4 py-12 text-center">
-        <p className="text-sm text-[#8c6239]/50">
+        <p className="text-base text-[#8c6239]/70">
           Arsip Interaktif UUDS 1950 — Dibuat untuk memahami jejak demokrasi
           Indonesia
         </p>
-        <p className="mt-1 text-xs text-[#8c6239]/30">
+        <p className="mt-1 text-sm text-[#8c6239]/60">
           © 2024 · Proyek Pembelajaran Sejarah
         </p>
       </footer>
