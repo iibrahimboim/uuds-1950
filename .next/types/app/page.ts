@@ -1,4 +1,4 @@
-// File: C:\Users\Ibrahim\OneDrive\文件\TUGAS WIKRAMA MAULANA IBRAHIM HADAD\pp-web\app\page.tsx
+// File: C:\Users\Ibrahim\OneDrive\文件\TugasWikrama\pp-web\app\page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
