@@ -951,6 +951,12 @@
       background-color: color-mix(in oklab, var(--color-emerald-700) 20%, transparent);
     }
   }
+  .bg-white\/40 {
+    background-color: color-mix(in srgb, #fff 40%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-white) 40%, transparent);
+    }
+  }
   .bg-cover {
     background-size: cover;
   }
@@ -968,6 +974,9 @@
   }
   .p-2\.5 {
     padding: calc(var(--spacing) * 2.5);
+  }
+  .p-3 {
+    padding: calc(var(--spacing) * 3);
   }
   .p-4 {
     padding: calc(var(--spacing) * 4);
@@ -1020,6 +1029,9 @@
   .py-12 {
     padding-block: calc(var(--spacing) * 12);
   }
+  .py-16 {
+    padding-block: calc(var(--spacing) * 16);
+  }
   .py-20 {
     padding-block: calc(var(--spacing) * 20);
   }
@@ -1046,6 +1058,9 @@
   }
   .align-middle {
     vertical-align: middle;
+  }
+  .font-sans {
+    font-family: var(--font-sans);
   }
   .font-serif {
     font-family: var(--font-serif);
@@ -1113,6 +1128,10 @@
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
   }
+  .tracking-\[0\.2em\] {
+    --tw-tracking: 0.2em;
+    letter-spacing: 0.2em;
+  }
   .tracking-\[0\.25em\] {
     --tw-tracking: 0.25em;
     letter-spacing: 0.25em;
@@ -1135,6 +1154,9 @@
   .text-\[\#3a2f24\] {
     color: #3a2f24;
   }
+  .text-\[\#4a2d18\] {
+    color: #4a2d18;
+  }
   .text-\[\#4a3b2c\] {
     color: #4a3b2c;
   }
@@ -1147,6 +1169,9 @@
   .text-\[\#5a4a3a\]\/80 {
     color: color-mix(in oklab, #5a4a3a 80%, transparent);
   }
+  .text-\[\#6b4828\] {
+    color: #6b4828;
+  }
   .text-\[\#8c6239\] {
     color: #8c6239;
   }
@@ -1158,6 +1183,9 @@
   }
   .text-\[\#8c6239\]\/60 {
     color: color-mix(in oklab, #8c6239 60%, transparent);
+  }
+  .text-\[\#8c6239\]\/70 {
+    color: color-mix(in oklab, #8c6239 70%, transparent);
   }
   .text-emerald-800 {
     color: var(--color-emerald-800);
@@ -1371,8 +1399,15 @@
     .sm\:p-8 {
       padding: calc(var(--spacing) * 8);
     }
+    .sm\:p-10 {
+      padding: calc(var(--spacing) * 10);
+    }
     .sm\:px-8 {
       padding-inline: calc(var(--spacing) * 8);
+    }
+    .sm\:text-2xl {
+      font-size: var(--text-2xl);
+      line-height: var(--tw-leading, var(--text-2xl--line-height));
     }
     .sm\:text-4xl {
       font-size: var(--text-4xl);
@@ -1381,6 +1416,10 @@
     .sm\:text-8xl {
       font-size: var(--text-8xl);
       line-height: var(--tw-leading, var(--text-8xl--line-height));
+    }
+    .sm\:text-lg {
+      font-size: var(--text-lg);
+      line-height: var(--tw-leading, var(--text-lg--line-height));
     }
     .sm\:text-xl {
       font-size: var(--text-xl);
