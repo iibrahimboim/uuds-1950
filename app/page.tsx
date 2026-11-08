@@ -1,13 +1,25 @@
+import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import LatarBelakang from "@/components/LatarBelakang";
+import PeriodeKonstitusi from "@/components/PeriodeKonstitusi";
 import IndikatorDemokrasi from "@/components/IndikatorDemokrasi";
 import TimelineKabinet from "@/components/TimelineKabinet";
+import Kesimpulan from "@/components/Kesimpulan";
 
 export default function Home() {
   return (
     <>
-      <HeroSection />
+      <Navbar />
+
+      <div id="beranda">
+        <HeroSection />
+      </div>
+
+      <LatarBelakang />
+      <PeriodeKonstitusi />
       <IndikatorDemokrasi />
       <TimelineKabinet />
+      <Kesimpulan />
 
       {/* Footer */}
       <footer className="border-t border-[#8c6239]/10 px-4 py-12 text-center">

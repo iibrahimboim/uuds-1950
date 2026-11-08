@@ -1,76 +1,83 @@
 "use client";
 
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-/* ───────────────────── Custom Cursor ───────────────────── */
+/* ───────────────────── Smooth Custom Cursor (ref-based) ───────────────────── */
 function CustomCursor() {
-  const [pos, setPos] = useState({ x: -100, y: -100 });
-  const [trailing, setTrailing] = useState({ x: -100, y: -100 });
-  const [isClickable, setIsClickable] = useState(false);
+  const dotRef = useRef<HTMLDivElement>(null);
+  const auraRef = useRef<HTMLDivElement>(null);
+  const mouse = useRef({ x: -100, y: -100 });
+  const trailing = useRef({ x: -100, y: -100 });
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
-    const move = (e: MouseEvent) => {
-      setPos({ x: e.clientX, y: e.clientY });
-      const target = e.target as HTMLElement;
-      setIsClickable(
-        target.closest("a, button, [role='button'], [data-clickable]") !== null
-      );
+    let hasMoved = false;
+
+    const onMove = (e: MouseEvent) => {
+      if (!hasMoved) {
+        hasMoved = true;
+        setActive(true);
+      }
+      mouse.current = { x: e.clientX, y: e.clientY };
+
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${e.clientX - 4}px, ${e.clientY - 4}px, 0)`;
+      }
+
+      const target = e.target as HTMLElement | null;
+      const clickable =
+        target?.closest("a, button, [role='button'], [data-clickable]") !== null;
+      if (auraRef.current) {
+        auraRef.current.style.transform = `translate3d(${trailing.current.x - 18}px, ${trailing.current.y - 18}px, 0) scale(${clickable ? 1.5 : 1})`;
+      }
     };
-    window.addEventListener("mousemove", move);
-    return () => window.removeEventListener("mousemove", move);
-  }, []);
 
-  useEffect(() => {
     let raf: number;
     const follow = () => {
-      setTrailing((prev) => ({
-        x: prev.x + (pos.x - prev.x) * 0.15,
-        y: prev.y + (pos.y - prev.y) * 0.15,
-      }));
+      trailing.current.x += (mouse.current.x - trailing.current.x) * 0.15;
+      trailing.current.y += (mouse.current.y - trailing.current.y) * 0.15;
+      if (auraRef.current) {
+        auraRef.current.style.transform = `translate3d(${trailing.current.x - 18}px, ${trailing.current.y - 18}px, 0)`;
+      }
       raf = requestAnimationFrame(follow);
     };
+
+    window.addEventListener("mousemove", onMove, { passive: true });
     raf = requestAnimationFrame(follow);
-    return () => cancelAnimationFrame(raf);
-  }, [pos]);
+
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  if (!active) return null;
 
   return (
     <>
-      {/* Trailing aura */}
       <div
-        className="pointer-events-none fixed z-[9999] rounded-full mix-blend-difference transition-transform duration-100"
+        ref={auraRef}
+        className="pointer-events-none fixed left-0 top-0 z-[9999] h-9 w-9 rounded-full mix-blend-difference"
         style={{
-          left: trailing.x - 18,
-          top: trailing.y - 18,
-          width: 36,
-          height: 36,
-          border: "1.5px solid rgba(140,98,57,0.5)",
-          transform: isClickable ? "scale(1.6)" : "scale(1)",
+          border: "1.5px solid rgba(140,98,57,0.55)",
+          transition: "transform 0.08s ease-out",
+          willChange: "transform",
         }}
       />
-      {/* Dot */}
       <div
-        className="pointer-events-none fixed z-[9999] rounded-full bg-[#8c6239]"
-        style={{
-          left: pos.x - 4,
-          top: pos.y - 4,
-          width: 8,
-          height: 8,
-        }}
+        ref={dotRef}
+        className="pointer-events-none fixed left-0 top-0 z-[9999] h-2 w-2 rounded-full bg-[#8c6239]"
+        style={{ willChange: "transform" }}
       />
     </>
   );
 }
 
-/* ───────────────────── Typewriter Hook ───────────────────── */
-function useTypewriter(text: string, speed = 60) {
+/* ───────────────────── Typewriter Hook (Clean & Stable) ───────────────────── */
+function useTypewriter(text: string, speed = 45) {
   const [displayed, setDisplayed] = useState("");
   const [done, setDone] = useState(false);
-
-  const reset = useCallback(() => {
-    setDisplayed("");
-    setDone(false);
-  }, []);
 
   useEffect(() => {
     if (done) return;
@@ -84,7 +91,7 @@ function useTypewriter(text: string, speed = 60) {
     return () => clearTimeout(timer);
   }, [displayed, text, speed, done]);
 
-  return { displayed, done, reset };
+  return { displayed, done };
 }
 
 /* ───────────────────── HeroSection ───────────────────── */
@@ -95,113 +102,132 @@ export default function HeroSection() {
     offset: ["start start", "end start"],
   });
 
-  /* Parallax transforms */
-  const titleScale = useTransform(scrollYProgress, [0, 1], [1, 0.5]);
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-  const titleY = useTransform(scrollYProgress, [0, 1], [0, -120]);
+  const titleScale = useTransform(scrollYProgress, [0, 1], [1, 0.85]);
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, 50]);
 
-  const subtitleY = useTransform(scrollYProgress, [0, 1], [0, -60]);
-  const leftClipX = useTransform(scrollYProgress, [0.1, 0.6], [-400, 0]);
-  const rightClipX = useTransform(scrollYProgress, [0.1, 0.6], [400, 0]);
-  const clipOpacity = useTransform(scrollYProgress, [0.1, 0.5], [0, 1]);
-
-  /* Sepia → warm filter */
-  const sepiaVal = useTransform(scrollYProgress, [0, 1], [0.7, 0]);
-
-  useEffect(() => {
-    return sepiaVal.on("change", (v) => {
-      document.body.style.filter = `sepia(${v})`;
-    });
-  }, [sepiaVal]);
-
-  /* Typewriter */
   const { displayed, done } = useTypewriter(
-    "Menelusuri Jejak Demokrasi Parlementer Indonesia",
-    45
+    "Menelusuri Jejak Demokrasi Parlementer Indonesia (1950 – 1959)",
+    40
   );
 
   return (
     <section
       ref={containerRef}
-      className="relative flex min-h-[200vh] flex-col items-center overflow-hidden"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pt-20 pb-16"
     >
-      {/* Custom cursor */}
-      <CustomCursor />
+      {/* Custom cursor on desktop */}
+      <div className="hidden md:block">
+        <CustomCursor />
+      </div>
 
-      {/* Sticky hero content */}
-      <div className="sticky top-0 flex h-screen w-full flex-col items-center justify-center px-4">
-        {/* Main title – parallax */}
+      <div className="relative z-10 flex w-full max-w-4xl flex-col items-center justify-center text-center">
+        {/* Badge era */}
+        <motion.div
+          initial={{ opacity: 0, y: -15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#8c6239]/30 bg-[#f5e6d0]/80 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-[#8c6239] shadow-sm backdrop-blur-sm"
+        >
+          <span>🏛️</span>
+          <span>Arsip Konstitusi Nasional</span>
+        </motion.div>
+
+        {/* Main title */}
         <motion.h1
-          style={{ scale: titleScale, opacity: titleOpacity, y: titleY }}
-          className="text-center text-6xl font-bold tracking-tight text-[#2a221b] sm:text-8xl md:text-9xl"
+          style={{ scale: titleScale, y: titleY }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-6xl font-extrabold tracking-tight text-[#2a221b] sm:text-8xl md:text-9xl"
         >
           <span className="block leading-none">UUDS</span>
-          <span className="block text-[#8c6239] leading-none">1950</span>
+          <span className="block text-[#8c6239] leading-none mt-1">1950</span>
         </motion.h1>
 
         {/* Typewriter subtitle */}
-        <motion.p
-          style={{ y: subtitleY }}
-          className="mt-6 max-w-xl text-center text-lg leading-relaxed text-[#5a4a3a] sm:text-xl"
-        >
-          {displayed}
-          {!done && (
-            <span className="ml-0.5 inline-block w-[2px] h-5 bg-[#8c6239] animate-pulse" />
-          )}
-        </motion.p>
+        <div className="mt-6 min-h-[3.5rem] max-w-2xl">
+          <p className="text-lg leading-relaxed text-[#5a4a3a] sm:text-xl font-medium">
+            {displayed}
+            {!done && (
+              <span className="ml-1 inline-block h-5 w-[2px] bg-[#8c6239] animate-pulse align-middle" />
+            )}
+          </p>
+        </div>
 
-        {/* Decorative line */}
+        {/* Decorative divider */}
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
-          transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
-          className="mt-8 h-px w-48 origin-center bg-[#8c6239]/50"
+          transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+          className="mt-6 h-px w-48 origin-center bg-[#8c6239]/40"
         />
 
-        {/* Scroll hint */}
-        <motion.div
+        {/* Quick description */}
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 3 }}
-          className="mt-12 flex flex-col items-center gap-2 text-sm text-[#8c6239]/60"
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mt-6 max-w-xl text-sm leading-relaxed text-[#5a4a3a]/80"
         >
-          <span>Gulir ke bawah untuk menjelajah</span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-            className="h-6 w-4 rounded-full border border-[#8c6239]/40 flex items-start justify-center pt-1"
+          Era kebebasan politik terluas dalam sejarah konstitusi Indonesia.
+          Menjalankan sistem pemerintahan parlementer dengan multipartai, pemilu
+          pertama 1955, dan 7 pergantian kabinet.
+        </motion.p>
+
+        {/* Action Button & Scroll Hint */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="mt-10 flex flex-col items-center gap-4"
+        >
+          <a
+            href="#latar-belakang"
+            data-clickable
+            className="group inline-flex items-center gap-2 rounded-full border border-[#8c6239]/40 bg-[#8c6239]/10 px-6 py-2.5 text-sm font-semibold text-[#8c6239] transition-all duration-300 hover:bg-[#8c6239] hover:text-[#f5e6d0] shadow-sm hover:shadow-md"
           >
-            <div className="h-1.5 w-0.5 rounded-full bg-[#8c6239]/60" />
-          </motion.div>
-        </motion.div>
+            <span>Mulai Eksplorasi</span>
+            <span className="transition-transform duration-300 group-hover:translate-y-0.5">
+              ↓
+            </span>
+          </a>
 
-        {/* Floating newspaper clips – parallax side elements */}
-        <motion.div
-          style={{ x: leftClipX, opacity: clipOpacity }}
-          className="absolute left-8 top-1/3 hidden w-56 -rotate-6 rounded border border-[#8c6239]/20 bg-[#f5e6d0]/80 p-4 shadow-lg backdrop-blur-sm md:block"
-        >
-          <p className="text-xs font-medium uppercase tracking-widest text-[#8c6239]">
-            Koran Merdeka — 1950
-          </p>
-          <p className="mt-2 text-sm leading-snug text-[#3a2f24]">
-            &ldquo;Negara Kesatuan Republik Indonesia resmi kembali
-            diproklamasikan...&rdquo;
-          </p>
-        </motion.div>
-
-        <motion.div
-          style={{ x: rightClipX, opacity: clipOpacity }}
-          className="absolute right-8 top-1/2 hidden w-52 rotate-3 rounded border border-[#8c6239]/20 bg-[#f5e6d0]/80 p-4 shadow-lg backdrop-blur-sm md:block"
-        >
-          <p className="text-xs font-medium uppercase tracking-widest text-[#8c6239]">
-            Arsip Nasional — 1955
-          </p>
-          <p className="mt-2 text-sm leading-snug text-[#3a2f24]">
-            &ldquo;Pemilu pertama Indonesia dilaksanakan dengan penuh semangat
-            demokratis.&rdquo;
-          </p>
+          <div className="flex items-center gap-2 text-xs text-[#8c6239]/60">
+            <span>Gulir ke bawah untuk membaca arsip</span>
+          </div>
         </motion.div>
       </div>
+
+      {/* Floating newspaper clips (Desktop only) */}
+      <motion.div
+        initial={{ opacity: 0, x: -40 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.9, delay: 0.5, ease: "easeOut" }}
+        className="absolute left-6 top-1/3 hidden w-60 -rotate-3 rounded-lg border border-[#8c6239]/25 bg-[#f5e6d0]/90 p-4 shadow-lg backdrop-blur-sm lg:block"
+      >
+        <p className="text-[11px] font-semibold uppercase tracking-wider text-[#8c6239]">
+          Koran Merdeka — 17 Agustus 1950
+        </p>
+        <p className="mt-1.5 text-xs leading-relaxed text-[#3a2f24]">
+          &ldquo;Negara Kesatuan Republik Indonesia resmi kembali berdiri dengan
+          UUDS 1950 sebagai dasar konstitusional.&rdquo;
+        </p>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, x: 40 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.9, delay: 0.7, ease: "easeOut" }}
+        className="absolute right-6 top-1/2 hidden w-60 rotate-2 rounded-lg border border-[#8c6239]/25 bg-[#f5e6d0]/90 p-4 shadow-lg backdrop-blur-sm lg:block"
+      >
+        <p className="text-[11px] font-semibold uppercase tracking-wider text-[#8c6239]">
+          Arsip Nasional — 1955
+        </p>
+        <p className="mt-1.5 text-xs leading-relaxed text-[#3a2f24]">
+          &ldquo;Pemilu pertama 1955 berlangsung damai dan jujur, menjadi tonggak
+          sejarah demokrasi paling bersih di Indonesia.&rdquo;
+        </p>
+      </motion.div>
     </section>
   );
 }

@@ -1,44 +1,25 @@
 @import "tailwindcss";
 
-/* ===== Custom Cursor ===== */
-* {
-  cursor: none !important;
-}
-
-/* ===== Noise / Film Grain Overlay ===== */
+/* ===== Noise / Film Grain Overlay (Statis & Halus, Tidak Bergetar) ===== */
 .noise-overlay {
   position: fixed;
   inset: 0;
-  z-index: 50;
+  z-index: 30;
   pointer-events: none;
-  opacity: 0.04;
+  opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
-  animation: grain 0.5s steps(6) infinite;
-}
-
-@keyframes grain {
-  0%, 100% { transform: translate(0, 0); }
-  10% { transform: translate(-5%, -10%); }
-  20% { transform: translate(-15%, 5%); }
-  30% { transform: translate(7%, -25%); }
-  40% { transform: translate(-5%, 25%); }
-  50% { transform: translate(-15%, 10%); }
-  60% { transform: translate(15%, 0%); }
-  70% { transform: translate(0%, 15%); }
-  80% { transform: translate(3%, 35%); }
-  90% { transform: translate(-10%, 10%); }
 }
 
 /* ===== Custom Scrollbar ===== */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(42, 34, 27, 0.1);
+  background: rgba(42, 34, 27, 0.06);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(140, 98, 57, 0.5);
+  background: rgba(140, 98, 57, 0.45);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -51,9 +32,9 @@
   color: #2a221b;
 }
 
-/* ===== Sepia Gradient via scroll (CSS custom property driven) ===== */
-body {
-  transition: filter 0.3s ease;
+/* ===== Smooth scroll ===== */
+html {
+  scroll-behavior: smooth;
 }
 
 /* ===== Font ===== */
